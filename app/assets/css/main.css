@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Toast customizations integradas com o design system */
+@layer components {
+  .Vue-Toastification__toast {
+    @apply rounded-xl shadow-medium border-0 font-sans;
+  }
+
+  .Vue-Toastification__toast--success {
+    @apply bg-success-500 text-white;
+  }
+
+  .Vue-Toastification__toast--error {
+    @apply bg-error-500 text-white;
+  }
+
+  .Vue-Toastification__toast--warning {
+    @apply bg-warning-500 text-white;
+  }
+
+  .Vue-Toastification__toast--info {
+    @apply bg-primary-500 text-white;
+  }
+
+  .Vue-Toastification__toast-body {
+    @apply text-sm font-medium m-0 p-0;
+  }
+
+  .Vue-Toastification__close-button {
+    @apply text-white hover:text-neutral-200 transition-colors self-start mt-0.5;
+  }
+
+  .Vue-Toastification__toast-icon {
+    @apply mr-2 self-start mt-0.5;
+  }
+}
+
+.Vue-Toastification__progress-bar {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
