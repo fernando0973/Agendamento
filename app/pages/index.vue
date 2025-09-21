@@ -3,6 +3,32 @@
     <div class="container mx-auto px-4 py-16">
       <!-- Header -->
       <header class="text-center mb-12">
+        <!-- User Info and Logout -->
+        <div class="flex justify-end mb-4">
+          <div v-if="user" class="flex items-center space-x-4">
+            <span class="text-sm text-gray-600">
+              Olá, {{ user.email }}
+            </span>
+            <BaseButton
+              variant="outline" 
+              size="sm"
+              :loading="isLoggingOut"
+              @click="handleLogout"
+            >
+              Sair
+            </BaseButton>
+          </div>
+          <div v-else>
+            <BaseButton
+              variant="primary"
+              size="sm"
+              @click="navigateTo('/login')"
+            >
+              Entrar
+            </BaseButton>
+          </div>
+        </div>
+
         <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
           Bem-vindo ao 
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
@@ -95,6 +121,14 @@ useHead({
   ]
 })
 
+// Auth
+const { user, logout, isLoggingOut } = useAuth()
+
+// Handle logout
+const handleLogout = async () => {
+  await logout()
+}
+
 // Dados reativos para teste
 const stats = ref({
   agendamentos: 150,
@@ -111,6 +145,6 @@ const handleClick = () => {
 <style scoped>
 /* Estilos adicionais se necessário */
 .container {
-  @apply max-w-7xl;
+  max-width: 80rem;
 }
 </style>
