@@ -69,7 +69,7 @@ export const useUserStore = defineStore('user', () => {
         throw new Error('Usuário não autenticado ou perfil não carregado')
       }
 
-      const { data, error: supabaseError } = await supabase
+      const { data, error: supabaseError } = await (supabase as any)
         .from('ag_profiles')
         .update(updates)
         .eq('user_id', user.value.id)
@@ -101,7 +101,7 @@ export const useUserStore = defineStore('user', () => {
         throw new Error('Usuário não autenticado')
       }
 
-      const { data, error: supabaseError } = await supabase
+      const { data, error: supabaseError } = await (supabase as any)
         .from('ag_profiles')
         .insert({
           user_id: user.value.id,

@@ -28,14 +28,16 @@
 </template>
 
 <script setup lang="ts">
-import EspecialidadeTable from '../components/EspecialidadeTable.vue'
-import EspecialidadeModal from '../components/EspecialidadeModal.vue'
-import ConfirmModal from '../components/ConfirmModal.vue'
-import { useProfissionais } from '../composables/useProfissionais'
+import EspecialidadeTable from '~/components/EspecialidadeTable.vue'
+import EspecialidadeModal from '~/components/EspecialidadeModal.vue'
+import ConfirmModal from '~/components/ConfirmModal.vue'
+import { useProfissionais } from '~/composables/useProfissionais'
+import { useNotifications } from '~/composables/useNotifications'
 import { ref, onMounted } from 'vue'
 import type { Especialidade } from '../../shared/types/user'
 
 const { especialidades, loading, error, fetchEspecialidades, deleteEspecialidade } = useProfissionais()
+const { showSuccess, showError } = useNotifications()
 const showModal = ref(false)
 const isEdicao = ref(false)
 const especialidadeEditando = ref<Especialidade | null>(null)
@@ -66,17 +68,15 @@ async function confirmarDelete() {
     try {
       const result = await deleteEspecialidade(especialidadeDeletando.value.id)
       if (result.success) {
+        showSuccess('Especialidade excluída com sucesso!')
         showDeleteModal.value = false
         especialidadeDeletando.value = null
-        // Opcional: mostrar toast de sucesso
-        console.log('Especialidade excluída com sucesso!')
       } else {
-        // Melhor tratamento de erro
-        alert(`Erro ao excluir: ${result.message}`)
+        showError(`Erro ao excluir especialidade: ${result.message}`)
       }
     } catch (error) {
       console.error('Erro inesperado:', error)
-      alert('Erro inesperado ao excluir especialidade')
+      showError('Erro inesperado ao excluir especialidade')
     } finally {
       deletingLoading.value = false
     }
