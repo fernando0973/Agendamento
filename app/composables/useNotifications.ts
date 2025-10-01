@@ -1,6 +1,6 @@
-import { useToast } from 'vue-toastification/composition'
+import { useToast } from 'vue-toastification'
 
-export const useNotifications = () => {
+export function useNotifications() {
   const toast = useToast()
 
   const showSuccess = (message: string, options?: any) => {
