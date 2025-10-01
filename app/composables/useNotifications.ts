@@ -1,4 +1,4 @@
-import { useToast } from 'vue-toastification'
+import { useToast } from 'vue-toastification/composition'
 
 export const useNotifications = () => {
   const toast = useToast()

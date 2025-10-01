@@ -43,7 +43,7 @@
     <div class="hidden lg:flex lg:flex-1 lg:flex-col lg:justify-center lg:px-20 lg:py-12 bg-gradient-to-br from-primary-500 to-primary-700">
       <div class="max-w-md mx-auto text-center text-white">
         <h1 class="text-4xl font-bold mb-6">
-          SaaS Agendamento
+          AlfaSix <br> Sistema de Agendamento 
         </h1>
         <p class="text-xl text-primary-100 leading-relaxed">
           Gerencie seus agendamentos de forma simples e eficiente. 
@@ -77,9 +77,9 @@ definePageMeta({
 
 // Head para SEO
 useHead({
-  title: 'Login - SaaS Agendamento',
+  title: 'Login - Agenda AlfaSix',
   meta: [
-    { name: 'description', content: 'Faça login na sua conta do SaaS Agendamento' }
+    { name: 'description', content: 'Faça login na sua conta do Agenda AlfaSix' }
   ]
 })
 </script>

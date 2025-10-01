@@ -221,7 +221,7 @@
 
 <script setup lang="ts">
 import { PlusIcon, CheckIcon, MagnifyingGlassIcon, LockClosedIcon, AtSymbolIcon } from '@heroicons/vue/24/outline'
-import { useToast } from 'vue-toastification'
+// import { useToast } from 'vue-toastification/composition'
 
 // Meta tags
 useHead({
@@ -233,7 +233,8 @@ useHead({
 
 // Reactive data
 const loadingButton = ref(false)
-const toast = useToast()
+// const toast = useToast()
+const toast = { success: (msg: string) => console.log('Success:', msg), error: (msg: string) => console.error('Error:', msg) }
 
 const formData = ref({
   name: '',

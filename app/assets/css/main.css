@@ -5,38 +5,58 @@
 /* Toast customizations integradas com o design system */
 @layer components {
   .Vue-Toastification__toast {
-    @apply rounded-xl shadow-medium border-0 font-sans;
+    border-radius: 0.75rem;
+    border: 0;
+    box-shadow: 0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+    font-family: Inter, system-ui, sans-serif;
   }
 
   .Vue-Toastification__toast--success {
-    @apply bg-success-500 text-white;
+    background-color: #22c55e;
+    color: white;
   }
 
   .Vue-Toastification__toast--error {
-    @apply bg-error-500 text-white;
+    background-color: #ef4444;
+    color: white;
   }
 
   .Vue-Toastification__toast--warning {
-    @apply bg-warning-500 text-white;
+    background-color: #f59e0b;
+    color: white;
   }
 
   .Vue-Toastification__toast--info {
-    @apply bg-primary-500 text-white;
+    background-color: #0ea5e9;
+    color: white;
   }
 
   .Vue-Toastification__toast-body {
-    @apply text-sm font-medium m-0 p-0;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
   }
 
   .Vue-Toastification__close-button {
-    @apply text-white hover:text-neutral-200 transition-colors self-start mt-0.5;
+    color: white;
+    align-self: flex-start;
+    margin-top: 0.125rem;
+    transition: color 0.15s ease-in-out;
+  }
+
+  .Vue-Toastification__close-button:hover {
+    color: #e5e5e5;
   }
 
   .Vue-Toastification__toast-icon {
-    @apply mr-2 self-start mt-0.5;
+    margin-right: 0.5rem;
+    align-self: flex-start;
+    margin-top: 0.125rem;
   }
 }
 
+/* Customização da barra de progresso do toast */
 .Vue-Toastification__progress-bar {
   background: rgba(255, 255, 255, 0.3) !important;
 }
