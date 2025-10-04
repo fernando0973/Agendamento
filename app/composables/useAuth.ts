@@ -1,6 +1,9 @@
+import { useUserStore } from '../../stores/user'
+
 export const useAuth = () => {
   const supabase = useSupabaseClient()
   const user = useSupabaseUser()
+  const userStore = useUserStore()
   
   // Loading states
   const isLoading = ref(false)
@@ -36,6 +39,16 @@ export const useAuth = () => {
       // Aguardar um pouco antes de redirecionar para garantir que o estado foi atualizado
       await nextTick()
       
+      // Carregar perfil do usuário após login bem-sucedido
+      console.log('🔄 Login bem-sucedido, carregando perfil do usuário...')
+      try {
+        await userStore.fetchProfile()
+        console.log('✅ Perfil carregado após login:', userStore.profile)
+      } catch (profileError) {
+        console.error('❌ Erro ao carregar perfil após login:', profileError)
+        // Não bloquear o login por erro no perfil
+      }
+      
       // Redirecionar para a página inicial após login bem-sucedido
       await navigateTo('/')
       
@@ -63,6 +76,10 @@ export const useAuth = () => {
       if (error) {
         throw error
       }
+
+      // Limpar perfil do usuário
+      console.log('🧹 Logout realizado, limpando perfil do usuário...')
+      userStore.clearProfile()
 
       // Aguardar um pouco antes de redirecionar
       await nextTick()

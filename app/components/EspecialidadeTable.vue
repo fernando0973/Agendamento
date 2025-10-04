@@ -67,5 +67,9 @@ defineProps<{ especialidades: Especialidade[]; loading: boolean; error: string |
 defineEmits(['adicionar', 'editar', 'deletar'])
 
 const userStore = useUserStore()
-const isAdmin = computed(() => userStore.userRole === 'admin')
+
+// Verificação simples e reativa
+const isAdmin = computed(() => {
+  return userStore.profile?.role === 'admin'
+})
 </script>

@@ -200,6 +200,10 @@ import {
 // Auth
 const { logout, isLoggingOut } = useAuth()
 
+// User Store
+import { useUserStore } from '../../stores/user'
+const userStore = useUserStore()
+
 // Estado do sidebar
 const isCollapsed = ref(false)
 

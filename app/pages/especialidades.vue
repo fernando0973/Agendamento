@@ -33,11 +33,13 @@ import EspecialidadeModal from '~/components/EspecialidadeModal.vue'
 import ConfirmModal from '~/components/ConfirmModal.vue'
 import { useProfissionais } from '~/composables/useProfissionais'
 import { useNotifications } from '~/composables/useNotifications'
+import { useUserStore } from '../../stores/user'
 import { ref, onMounted } from 'vue'
 import type { Especialidade } from '../../shared/types/user'
 
 const { especialidades, loading, error, fetchEspecialidades, deleteEspecialidade } = useProfissionais()
 const { showSuccess, showError } = useNotifications()
+const userStore = useUserStore()
 const showModal = ref(false)
 const isEdicao = ref(false)
 const especialidadeEditando = ref<Especialidade | null>(null)
@@ -84,6 +86,7 @@ async function confirmarDelete() {
 }
 
 onMounted(() => {
+  // O middleware já garantiu que o perfil está carregado
   fetchEspecialidades()
 })
 

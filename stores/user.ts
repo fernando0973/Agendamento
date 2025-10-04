@@ -42,6 +42,7 @@ export const useUserStore = defineStore('user', () => {
       }
 
       profile.value = data as UserProfile
+      console.log('📝 Profile loaded in store:', profile.value)
     } catch (err) {
       console.error('Erro ao buscar perfil do usuário:', err)
       error.value = err instanceof Error ? err.message : 'Erro desconhecido'

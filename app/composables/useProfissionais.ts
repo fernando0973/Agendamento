@@ -1,6 +1,7 @@
 import { ref, readonly } from 'vue'
 import type { Especialidade } from '../../shared/types/user'
 import { useSupabaseClient } from '#imports'
+import { useUserStore } from '../../stores/user'
 
 // Estado global singleton
 const especialidades = ref<Especialidade[]>([])
@@ -9,6 +10,7 @@ const error = ref<string | null>(null)
 
 export function useProfissionais() {
   const supabase = useSupabaseClient()
+  const userStore = useUserStore()
 
 
 
@@ -37,6 +39,11 @@ export function useProfissionais() {
   }
 
   async function addEspecialidade(especialidade: string) {
+    // Verificar se o usuário é admin
+    if (!userStore.isAdmin) {
+      return { success: false, message: 'Acesso negado. Apenas administradores podem adicionar especialidades.' }
+    }
+    
     try {
       const { data, error } = await (supabase as any).rpc('ag_add_especialidade', {
         _especialidade: especialidade
@@ -67,6 +74,11 @@ export function useProfissionais() {
   }
 
   async function updateEspecialidade(id: number, especialidade: string) {
+    // Verificar se o usuário é admin
+    if (!userStore.isAdmin) {
+      return { success: false, message: 'Acesso negado. Apenas administradores podem editar especialidades.' }
+    }
+    
     try {
       const { data, error } = await (supabase as any).rpc('ag_update_especialidade', {
         _id: id,
@@ -98,6 +110,11 @@ export function useProfissionais() {
   }
 
   async function deleteEspecialidade(id: number) {
+    // Verificar se o usuário é admin
+    if (!userStore.isAdmin) {
+      return { success: false, message: 'Acesso negado. Apenas administradores podem deletar especialidades.' }
+    }
+    
     try {
       const { error } = await supabase
         .from('ag_especialidade')
