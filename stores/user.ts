@@ -1,7 +1,7 @@
 
 import { defineStore } from 'pinia'
 import { ref, computed, readonly } from 'vue'
-import type { UserProfile } from '../shared/types/user'
+import type { UserProfile } from '../shared/types/database'
 import { useSupabaseClient, useSupabaseUser } from '#imports'
 
 export const useUserStore = defineStore('user', () => {

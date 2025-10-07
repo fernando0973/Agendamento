@@ -1,7 +1,7 @@
 <template>
   <div class="p-6">
     <h1 class="text-2xl font-bold text-neutral-900 mb-6">Especialidades</h1>
-    <EspecialidadeTable 
+    <TabelaEspecialidades 
       :especialidades="especialidades" 
       :loading="loading" 
       :error="error" 
@@ -20,6 +20,7 @@
     <ConfirmModal 
       v-model="showDeleteModal"
       :item-name="especialidadeDeletando?.especialidade || ''"
+      item-type="Especialidade"
       :loading="deletingLoading"
       additional-info="Esta especialidade será removida permanentemente do sistema."
       @confirm="confirmarDelete"
@@ -28,14 +29,14 @@
 </template>
 
 <script setup lang="ts">
-import EspecialidadeTable from '~/components/EspecialidadeTable.vue'
+import TabelaEspecialidades from '~/components/TabelaEspecialidades.vue'
 import EspecialidadeModal from '~/components/EspecialidadeModal.vue'
 import ConfirmModal from '~/components/ConfirmModal.vue'
 import { useProfissionais } from '~/composables/useProfissionais'
 import { useNotifications } from '~/composables/useNotifications'
 import { useUserStore } from '../../stores/user'
 import { ref, onMounted } from 'vue'
-import type { Especialidade } from '../../shared/types/user'
+import type { Especialidade } from '../../shared/types/database'
 
 const { especialidades, loading, error, fetchEspecialidades, deleteEspecialidade } = useProfissionais()
 const { showSuccess, showError } = useNotifications()

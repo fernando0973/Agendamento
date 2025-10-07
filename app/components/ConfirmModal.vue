@@ -2,7 +2,7 @@
   <BaseModal :model-value="modelValue" @update:modelValue="$emit('update:modelValue', $event)">
     <template #header>
       <h3 class="text-lg font-semibold text-gray-900">
-        Deletar Especialidade
+        Deletar {{ itemType || 'Item' }}
       </h3>
     </template>
 
@@ -18,10 +18,10 @@
         <!-- Conteúdo -->
         <div class="flex-1">
           <p class="text-sm text-gray-700 mb-2">
-            Tem certeza que deseja deletar a especialidade <strong>'{{ itemName }}'</strong>?
+            Tem certeza que deseja deletar {{ itemType?.toLowerCase() || 'o item' }} <strong>'{{ itemName }}'</strong>?
           </p>
           <p class="text-sm text-gray-600">
-            Esta ação não pode ser desfeita.
+            {{ additionalInfo || 'Esta ação não pode ser desfeita.' }}
           </p>
         </div>
       </div>
@@ -58,6 +58,7 @@ import BaseButton from './BaseButton.vue'
 defineProps<{
   modelValue: boolean
   itemName: string
+  itemType?: string
   additionalInfo?: string
   loading?: boolean
 }>()
