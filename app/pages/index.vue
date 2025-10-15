@@ -1,20 +1,24 @@
+
 <template>
-  <div class="p-6">
-    <h1 class="text-2xl font-bold text-neutral-900">Dashboard</h1>
-    <p class="mt-4 text-lg text-primary-700">
-      Olá, {{ userName }}!
-    </p>
+  <div class="p-6 flex flex-col h-full min-h-0">
+    <h1 class="text-2xl font-bold text-neutral-900 mb-6">Agendamentos</h1>
+    <!-- Componente AgendamentoManager para gerenciar agendamentos -->
+    <div class="flex-1 min-h-0">
+      <AgendamentoManager />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useUserStore } from '../../stores/user'
+import AgendamentoManager from '~/components/agendamentos/AgendamentoManager.vue'
+import { useAgendamentoStore } from '../../stores/agendamento'
+import { onMounted } from 'vue'
 
-const userStore = useUserStore()
-const userName = computed(() => userStore.userName)
+// Inicializa o store de agendamento ao montar a página
+onMounted(() => {
+  useAgendamentoStore()
+})
 
-// Garantir que o layout default seja usado
 definePageMeta({
   layout: 'default'
 })

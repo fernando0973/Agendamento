@@ -71,7 +71,9 @@
         :class="[
           'w-full flex items-center rounded-lg text-left transition-colors',
           isCollapsed ? 'justify-center px-2 py-3' : 'space-x-3 px-3 py-2',
-          'text-neutral-700 hover:bg-neutral-50'
+          currentRoute === '/especialidades' 
+            ? 'bg-primary-50 text-primary-700 border border-primary-200' 
+            : 'text-neutral-700 hover:bg-neutral-50'
         ]"
         @click="handleEspecialidades"
         :title="isCollapsed ? 'Especialidades' : ''"

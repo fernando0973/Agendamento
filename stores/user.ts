@@ -1,6 +1,6 @@
 
 import { defineStore } from 'pinia'
-import { ref, computed, readonly } from 'vue'
+import { ref, computed } from 'vue'
 import type { UserProfile } from '../shared/types/database'
 import { useSupabaseClient, useSupabaseUser } from '#imports'
 
@@ -126,10 +126,10 @@ export const useUserStore = defineStore('user', () => {
   }
 
   return {
-    // Estado
-    profile: readonly(profile),
-    loading: readonly(loading),
-    error: readonly(error),
+    // Estado (removendo readonly para evitar warnings)
+    profile,
+    loading,
+    error,
     
     // Getters
     isLoggedIn,
